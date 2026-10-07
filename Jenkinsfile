@@ -30,7 +30,7 @@ pipeline {
             steps {
                 echo 'Scanning Docker image for vulnerabilities using Trivy...'
 
-                bat 'trivy image --severity HIGH,CRITICAL %IMAGE_NAME%:%IMAGE_TAG%'
+                bat '"C:\\Users\\shrek\\AppData\\Local\\Microsoft\\WinGet\\Packages\\AquaSecurity.Trivy_Microsoft.Winget.Source_8wekyb3d8bbwe\\trivy.exe" image --severity HIGH,CRITICAL %IMAGE_NAME%:%IMAGE_TAG%'
             }
         }
 
@@ -56,7 +56,7 @@ pipeline {
                 echo 'Verifying healthcare deployment...'
 
                 bat 'kubectl rollout status deployment/healthcare-app --timeout=120s'
-                bat 'kubectl get pods'
+                bat 'kubectl get pods -l app=healthcare-app'
                 bat 'kubectl get service healthcare-service'
             }
         }
